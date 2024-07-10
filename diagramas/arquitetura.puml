@@ -1,0 +1,42 @@
+@startuml Contexto
+!pragma revision 1
+
+!define AzurePuml https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/release/2-2/dist
+!includeurl AzurePuml/AzureRaw.puml
+!includeurl AzurePuml/Databases/AzureCosmosDb.puml
+!includeurl AzurePuml/Compute/AzureFunction.puml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+' Layout e legendas
+LAYOUT_LEFT_RIGHT()
+LAYOUT_WITH_LEGEND()
+
+' Data Sources
+Boundary(DataSources, "Data Sources") {
+  System(arquivos, "Files", "")
+}
+
+' Prepare and Transform
+Boundary(PrepareAndTransform, "Prepare and Transform") {
+  System(bronze, "Bronze", "Pipelines and Shortcuts (Copy)\nDados Brutos\nExtração de Dados\nArmazenamento Original")
+  System(silver, "Silver", "Notebooks, Spark Jobs, and Dataflows\nDados Limpos\nTransformações\nPadronização")
+  System(gold, "Gold", "Direct Lake\nDados Integrados\nTabelas Fato e Dimensões\nAnálises e Visualizações")
+}
+
+' Analyze
+Boundary(Analyze, "Analyze") {
+  System(sql_endpoint, "SQL Analytics Endpoint", "")
+  System(spark_endpoint, "Spark Analytics Endpoint", "")
+}
+
+DataSources --> bronze: Extrai Dados
+bronze --> silver: Copia Dados
+silver --> gold: Integra Dados
+gold --> Analyze: Envia Dados para Análise
+
+footer
+    MVP - Engenharia de dados - PUC RIO - 2024 - PlantUML version %version() - Diagrama v1.0 - @2024 - José Matos
+endfooter
+
+@enduml

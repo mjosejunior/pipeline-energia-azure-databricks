@@ -36,3 +36,7 @@ Dados refinados e integrados para análises e visualizações. Tabelas de fato e
 - [Produto Interno Bruto (PIB) - Dados Abertos GOV.BR](https://api.bcb.gov.br/dados/serie/bcdata.sgs.1207/dados?formato=csv&dataInicial=01/01/2012&dataFinal=31/05/2024)
 
 - [Inflação (IPCA) e Taxa Desemprego - IPEA Dados Abertos GOV.BR](https://www.ipea.gov.br/cartadeconjuntura/index.php/series-estatisticas-conjunturais-2/)
+
+## Cluster configurado
+
+## ![Cluster Databricks](imagens/cluster_databricks.png)

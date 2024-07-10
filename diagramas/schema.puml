@@ -1,0 +1,48 @@
+@startuml Diagrama
+!define RECTANGLE class
+
+title Diagrama de Classes com Relacionamentos
+
+class fact_inadimplencia {
+  +int AnoIndice
+  +string SigAgente
+  +string SigIndicador
+  +float VlrIndiceEnviado
+  +date DatGeracaoConjuntoDados
+  --
+  +AnoIndice FK
+  +SigAgente FK
+  +SigIndicador FK
+}
+
+class fact_economicos {
+  +int AnoIndice
+  +float TaxaDesemprego
+  +float Inflacao
+  +float PIB
+  --
+  +AnoIndice FK
+}
+
+class dim_agente {
+  +string SigAgente PK
+  +long NumCNPJ
+}
+
+class dim_indicador {
+  +string SigIndicador PK
+  +string DescricaoIndicador
+}
+
+class dim_tempo {
+  +int Ano PK
+  +int Mes
+  +int Trimestre
+}
+
+fact_inadimplencia --> dim_agente: "SigAgente"
+fact_inadimplencia --> dim_indicador: "SigIndicador"
+fact_inadimplencia --> dim_tempo: "AnoIndice"
+fact_economicos --> dim_tempo: "AnoIndice"
+
+@enduml
