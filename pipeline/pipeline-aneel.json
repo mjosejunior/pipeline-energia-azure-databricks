@@ -1,0 +1,55 @@
+{
+	"name": "pipeline-aneel",
+	"properties": {
+		"activities": [
+			{
+				"name": "silver-aneel",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/junior@mjsof.com/pipeline-energia-azure-databricks/camada_silver"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricksconect",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "gold-aneel",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "silver-aneel",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/junior@mjsof.com/pipeline-energia-azure-databricks/camada_gold"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricksconect",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
