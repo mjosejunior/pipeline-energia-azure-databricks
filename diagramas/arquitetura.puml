@@ -1,39 +1,62 @@
-@startuml Contexto
-!pragma revision 1
+@startuml diagrama
 
-!define AzurePuml https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/release/2-2/dist
-!includeurl AzurePuml/AzureRaw.puml
-!includeurl AzurePuml/Databases/AzureCosmosDb.puml
-!includeurl AzurePuml/Compute/AzureFunction.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+title Arquitetura de Dados
 
-' Layout e legendas
 LAYOUT_LEFT_RIGHT()
 LAYOUT_WITH_LEGEND()
 
 ' Data Sources
 Boundary(DataSources, "Data Sources") {
-  System(arquivos, "Files", "")
-}
+  System(arquivos, "Files", "CSV, JSON, Parquet")
+  }
 
 ' Prepare and Transform
-Boundary(PrepareAndTransform, "Prepare and Transform") {
-  System(bronze, "Bronze", "Pipelines and Shortcuts (Copy)\nDados Brutos\nExtração de Dados\nArmazenamento Original")
-  System(silver, "Silver", "Notebooks, Spark Jobs, and Dataflows\nDados Limpos\nTransformações\nPadronização")
-  System(gold, "Gold", "Direct Lake\nDados Integrados\nTabelas Fato e Dimensões\nAnálises e Visualizações")
+Boundary(PrepareAndTransform, "Preparação e Transformação") {
+  Boundary(PrepareAndTransform, "Azure") {
+    System(bronze, "Bronze", "Pipelines and Shortcuts (Copy)\nDados Brutos\nExtração de Dados\nArmazenamento Original")
+    System(silver, "Silver", "Notebooks, Spark Jobs, and Dataflows\nDados Limpos\nTransformações\nPadronização")
+    System(gold, "Gold", "Direct Lake\nDados Integrados\nTabelas Fato e Dimensões\nAnálises e Visualizações")
+    System(adf, "Data Factory", "Orquestração de Pipelines")
+    System(databricks, "Databricks", "Plataforma de Análise de Dados")
+  }
 }
 
 ' Analyze
 Boundary(Analyze, "Analyze") {
   System(sql_endpoint, "SQL Analytics Endpoint", "")
-  System(spark_endpoint, "Spark Analytics Endpoint", "")
 }
 
-DataSources --> bronze: Extrai Dados
-bronze --> silver: Copia Dados
-silver --> gold: Integra Dados
-gold --> Analyze: Envia Dados para Análise
+Boundary(DataSources, PrepareAndTransform, Analyze, "Azure Databricks") {
+  Rel(arquivos, bronze, "Carrega dados de")
+  Rel(bronze, silver, "Transforma dados de")
+  Rel(silver, gold, "Integra dados de")
+  Rel(gold, sql_endpoint, "Consulta dados de")
+  Rel(adf, bronze, "Orquestra pipelines de")
+  Rel(adf, silver, "Orquestra pipelines de")
+  Rel(adf, gold, "Orquestra pipelines de")
+  Rel(databricks, bronze, "Executa pipelines de")
+  Rel(databricks, silver, "Executa pipelines de")
+  Rel(databricks, gold, "Executa pipelines de")
+}
+
+Boundary(github, "GitHub") {
+  System(repositorio, "Repositório de Código", "")
+}
+
+Rel(repositorio, databricks, "Versiona e Armazena Código")
+Rel(repositorio, adf, "Versiona e Armazena Código")
+
+
+
+
+
+
+
+
+
+
 
 footer
     MVP - Engenharia de dados - PUC RIO - 2024 - PlantUML version %version() - Diagrama v1.0 - @2024 - José Matos
