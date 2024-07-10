@@ -39,4 +39,14 @@ Dados refinados e integrados para análises e visualizações. Tabelas de fato e
 
 ## Cluster configurado
 
-## ![Cluster Databricks](imagens/cluster_databricks.png)
+### ![Cluster Databricks](imagens/cluster_databricks.png)
+
+## Diagramas
+
+### Arquitetura da Solução
+
+### ![Diagrama de Arquitetura](diagramas/arquitetura/diagrama.svg)
+
+### Esquema Estrela
+
+### ![Diagrama tabelas Fato e Dimensões](diagramas/schema/Diagrama.svg)
