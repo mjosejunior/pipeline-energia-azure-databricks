@@ -50,3 +50,61 @@ Dados refinados e integrados para análises e visualizações. Tabelas de fato e
 ### Esquema Estrela
 
 ### ![Diagrama tabelas Fato e Dimensões](diagramas/schema/Diagrama.svg)
+
+## Pipeline
+
+### ![Pipeline](imagens/pipeline.png)
+
+### ![Pipeline](imagens/pipeline_trigger.png)
+
+## Camadas (Bronze, Silver, Gold)
+
+### ![Camadas](imagens/camadas.png)
+
+## Bronze
+
+### ![Dados Bronze](imagens/cm_bronze.png)
+
+## Silver
+
+### ![Silver](imagens/cm_silver.png)
+
+### ![Silver](imagens/parquet_silver.png)
+
+## Gold
+
+### ![Gold](imagens/cm_gold.png)
+
+### ![Gold](imagens/parquet_gold.png)
+
+## Analises
+
+## Pergunta 1: Como a inadimplência varia por classe de consumo nos anos de 2021 e 2022?
+
+### ![Pergunta 1](imagens/1.png)
+
+## Pergunta 2: Qual é a correlação entre inadimplência e indicadores econômicos?
+
+### ![Pergunta 2](imagens/2.png)
+
+### ![Pergunta 2](imagens/2.1.png)
+
+### ![Pergunta 2](imagens/2.2.png)
+
+## Pergunta 3: Qual é a tendência geral da inadimplência ao longo dos anos?
+
+### ![Pergunta 3](imagens/3.png)
+
+## Pergunta 4: Análise sazonal da inadimplência
+
+### ![Pergunta 4](imagens/4.png)
+
+## Pergunta 5: Qual é a performance das distribuidoras em relação à inadimplência (Top 10)?
+
+### ![Pergunta 5](imagens/5.png)
+
+## Pergunta 6: Qual é a análise de inadimplência durante a pandemia (2021-2022)?
+
+### ![Pergunta 6](imagens/6.png)
+
+### ![Pergunta 6](imagens/6.1.png)
