@@ -215,6 +215,4 @@ Para enriquecer este problema e sua solução no meu portfólio, planejo realiza
 - **Automação do Processo de Análise**:
   - Automatizar o processo de análise e geração de relatórios para facilitar a atualização contínua dos insights à medida que novos dados se tornam disponíveis.
 
-Em resumo, este trabalho foi uma experiência valiosa para entender a complexidade da inadimplência nas distribuidoras de energia elétrica e sua relação com indicadores econômicos. As dificuldades enfrentadas proporcionaram um aprendizado significativo, e os trabalhos futuros planejados permitirão aprimorar ainda mais essa análise, tornando-a mais robusta e abrangente.
-
 Este trabalho foi uma experiência valiosa para entender a complexidade da inadimplência nas distribuidoras de energia elétrica e sua relação com indicadores econômicos. Somente consegui alcançar esses objetivos porque a sprint de Engenharia de Dados da PUC-Rio trouxe informações aprofundadas e abrangentes sobre todo o processo envolvido em _Bancos de Dados_, _Data Warehouse e Data Lake_ e _Governança de Dados_. As dificuldades enfrentadas proporcionaram um aprendizado significativo, e os trabalhos futuros planejados permitirão aprimorar ainda mais essa análise, tornando-a mais robusta e abrangente.
